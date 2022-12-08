@@ -13,6 +13,7 @@ public class ProductDto {
     private int price;
     private int rating;
     private CategoryDto category;
+    private UserDto user;
     @JsonIgnore
     private List<ReviewDto> reviewList;
 }

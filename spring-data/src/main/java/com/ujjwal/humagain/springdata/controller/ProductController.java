@@ -1,12 +1,13 @@
 package com.ujjwal.humagain.springdata.controller;
 
-import com.ujjwal.humagain.springdata.aspect.annotation.ExecutionTime;
+import com.ujjwal.humagain.springdata.aspect.executionTime.ExecutionTime;
+import com.ujjwal.humagain.springdata.aspect.offensivewords.OffensiveWordFilter;
 import com.ujjwal.humagain.springdata.entity.Product;
 import com.ujjwal.humagain.springdata.entity.Review;
 import com.ujjwal.humagain.springdata.entity.dto.ProductDto;
-import com.ujjwal.humagain.springdata.entity.dto.ReviewDto;
 import com.ujjwal.humagain.springdata.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +20,9 @@ public class ProductController {
 
     @GetMapping
     @ExecutionTime
-    public List<ProductDto> findAll(){
-        return productService.findAll();
+    @OffensiveWordFilter
+    public ResponseEntity<List<ProductDto>> findAll(){
+        return ResponseEntity.ok().body(productService.findAll());
     }
 
     @GetMapping("/{id}")
@@ -31,8 +33,10 @@ public class ProductController {
 
     @PostMapping
     @ExecutionTime
-    public void save(@RequestBody ProductDto productDto){
+    @OffensiveWordFilter
+    public ResponseEntity save(@RequestBody ProductDto productDto){
         productService.save(productDto);
+        return ResponseEntity.ok().body("Product added successfully");
     }
 
     @PutMapping("/{id}")

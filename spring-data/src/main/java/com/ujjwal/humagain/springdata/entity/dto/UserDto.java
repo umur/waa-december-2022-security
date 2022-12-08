@@ -3,6 +3,7 @@ package com.ujjwal.humagain.springdata.entity.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ujjwal.humagain.springdata.entity.Address;
 import com.ujjwal.humagain.springdata.entity.Review;
+import com.ujjwal.humagain.springdata.entity.Role;
 import lombok.Data;
 
 import java.util.List;
@@ -18,5 +19,8 @@ public class UserDto {
     private Address address;
     @JsonIgnore
     private List<Review> reviewList;
+    @JsonIgnore
+    private List<Role> roles;
+
 
 }

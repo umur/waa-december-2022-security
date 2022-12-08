@@ -8,8 +8,10 @@ import java.util.Map;
 
 @Component
 public class JwtHelper {
+//    secret attached with the token
     private final String secret = "top-secret";
-    private final long expirataion = 5 * 60 * 60 * 60;
+//    validity of the token
+    private final long expirataion = 900000;
 
     public String generateToken(String email) {
         return Jwts.builder()

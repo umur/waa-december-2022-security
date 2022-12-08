@@ -1,4 +1,4 @@
-package com.ujjwal.humagain.springdata.aspect;
+package com.ujjwal.humagain.springdata.aspect.executionTime;
 
 import com.ujjwal.humagain.springdata.entity.ActivityLog;
 import com.ujjwal.humagain.springdata.exception.AopIsAwesomeHeaderException;
@@ -23,7 +23,7 @@ public class ExecutionTimeAspect {
     private final HttpServletRequest httpServletRequest;
     private final ActivityLogRepository activityLogRepository;
 
-    @Pointcut("@annotation(com.ujjwal.humagain.springdata.aspect.annotation.ExecutionTime)")
+    @Pointcut("@annotation(com.ujjwal.humagain.springdata.aspect.executionTime.ExecutionTime)")
     public void executionTimeAnnotation(){
 
     }

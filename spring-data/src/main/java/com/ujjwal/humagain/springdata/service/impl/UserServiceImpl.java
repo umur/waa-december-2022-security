@@ -1,10 +1,12 @@
 package com.ujjwal.humagain.springdata.service.impl;
 
+import com.ujjwal.humagain.springdata.entity.Role;
 import com.ujjwal.humagain.springdata.entity.User;
 import com.ujjwal.humagain.springdata.entity.dto.UserDto;
 import com.ujjwal.humagain.springdata.model.LoginRequest;
 import com.ujjwal.humagain.springdata.model.LoginResponse;
 import com.ujjwal.humagain.springdata.model.RefreshTokenRequest;
+import com.ujjwal.humagain.springdata.repository.RoleRepository;
 import com.ujjwal.humagain.springdata.repository.UserRepository;
 import com.ujjwal.humagain.springdata.security.JwtHelper;
 import com.ujjwal.humagain.springdata.service.UserService;
@@ -14,15 +16,16 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class UserServiceImpl implements UserService {
+    private final RoleRepository roleRepository;
     private final AuthenticationManager authenticationManager;
     private final JwtHelper jwtHelper;
     private final UserRepository userRepository;
@@ -30,9 +33,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
+        List<Role> roles = new ArrayList<>();
+        roles.add(roleRepository.findById(2).get());
+        user.setRoles(roles);
         userRepository.save(user);
     }
-
     @Override
     public void update(int id, UserDto userDto) {
         User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));

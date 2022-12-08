@@ -1,4 +1,4 @@
-package com.ujjwal.humagain.springdata.aspect.annotation;
+package com.ujjwal.humagain.springdata.aspect.executionTime;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;

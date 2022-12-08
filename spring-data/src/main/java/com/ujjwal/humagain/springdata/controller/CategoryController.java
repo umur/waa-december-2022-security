@@ -1,6 +1,6 @@
 package com.ujjwal.humagain.springdata.controller;
 
-import com.ujjwal.humagain.springdata.aspect.annotation.ExecutionTime;
+import com.ujjwal.humagain.springdata.aspect.executionTime.ExecutionTime;
 import com.ujjwal.humagain.springdata.entity.dto.CategoryDto;
 import com.ujjwal.humagain.springdata.service.CategoryService;
 import lombok.RequiredArgsConstructor;

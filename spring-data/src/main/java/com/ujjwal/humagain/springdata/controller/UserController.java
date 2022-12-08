@@ -1,6 +1,6 @@
 package com.ujjwal.humagain.springdata.controller;
 
-import com.ujjwal.humagain.springdata.aspect.annotation.ExecutionTime;
+import com.ujjwal.humagain.springdata.aspect.executionTime.ExecutionTime;
 import com.ujjwal.humagain.springdata.entity.dto.UserDto;
 import com.ujjwal.humagain.springdata.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +24,6 @@ public class UserController {
     @ExecutionTime
     public UserDto findById(@PathVariable int id) {
         return userService.findById(id);
-    }
-
-    @PostMapping
-    @ExecutionTime
-    public void save(@RequestBody UserDto userDto) {
-        userService.save(userDto);
     }
 
     @PutMapping("/{id}")

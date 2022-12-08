@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/uaa").permitAll()
+                .antMatchers("/uaa/*").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
