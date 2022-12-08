@@ -1,4 +1,4 @@
-package com.example.springsecurityassignment;
+package com.ujjwalhumagain.springsecurityassignment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
