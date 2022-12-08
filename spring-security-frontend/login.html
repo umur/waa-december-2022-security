@@ -9,60 +9,89 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>Login</title>
+    <script>
+        window.onload = function () {
+            const login = document.getElementById("login");
+            login.onclick = () => {
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+                fetch("http://localhost:8080/uaa/login", {
+                    headers: ({ "content-type": "application/json" }),
+                    method: "POST",
+                    body: JSON.stringify({
+                        email: username,
+                        password: password,
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        localStorage.setItem("token", data.accessToken);
+                        window.location.href = "/dashboard.html";
+
+                    }).catch(e => alert("Invalid Credentials"))
+            };
+
+        }
+    </script>
 </head>
 
 <body>
-    <div class="container"></div>
-    <div style="width: 20%; margin: 0 auto; margin-top: 50px;">
-        <div class="card">
-            <div class="card-header">
-                Login
-            </div>
-            <div class="card-body">
-                <div class="mb-3">
-                    <label for="Username" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="username" />
-                </div>
-                <div class="mb-3">
-                    <label for="Password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" />
-                </div>
-                <button id="login" class="btn btn-primary">Login</button>
-            </div>
-        </div>
-        <hr>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span>Don't have an account?</span>
-            <button id="signup" class="btn btn-secondary">SignUp</button>
-        </div>
+    <section class=" text-center text-lg-start">
+        <style>
+            .rounded-t-5 {
+                border-top-left-radius: 0.5rem;
+                border-top-right-radius: 0.5rem;
+            }
 
-    </div>
+            @media (min-width: 992px) {
+                .rounded-tr-lg-0 {
+                    border-top-right-radius: 0;
+                }
+
+                .rounded-bl-lg-5 {
+                    border-bottom-left-radius: 0.5rem;
+                }
+            }
+        </style>
+        <div class="card mb-3">
+            <div class="row g-0 d-flex align-items-center">
+                <div class="col-lg-4 d-none d-lg-flex">
+                    <img src="https://localwiki.org/media/cache/e5/ab/e5ab2b67578e3eee57687f8b3e816acf.png" alt="MIU"
+                        class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                </div>
+                <div class="col-lg-8">
+                    <h1 style="text-align: center;">Login</h1>
+
+                    <div class="card-body py-5 px-md-5">
+
+                        <form>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="username">Email address</label>
+                                <input type="email" id="username" class="form-control" />
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" id="password" class="form-control" />
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <a href="./signup.html">Don't have an account! Click here to create</a>
+                                </div>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="button" id="login" class="btn btn-primary btn-block mb-4">Login</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
-<script>
-
-    const signup = document.getElementById("signup");
-    signup.onclick = () => { window.location.href = "./signup.html" };
-
-    const login = document.getElementById("login");
-    login.onclick = () => {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        fetch("http://localhost:8080/uaa",
-            {
-                headers: new Headers({ 'content-type': 'application/json' }),
-                method: 'POST',
-                body: JSON.stringify({
-                    email: username,
-                    password: password
-                }),
-            })
-            .then(response => {
-                localStorage.setItem("token", response.accessToken)
-                window.location.href = "dashboard.html";
-            })
-            .catch(() => alert("Invalid Credentials!"));
-    };
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
