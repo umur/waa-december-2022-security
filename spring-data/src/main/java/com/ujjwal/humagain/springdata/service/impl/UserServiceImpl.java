@@ -24,7 +24,6 @@ import java.util.List;
 @Slf4j
 public class UserServiceImpl implements UserService {
     private final AuthenticationManager authenticationManager;
-    private final UserDetailsService userDetailsService;
     private final JwtHelper jwtHelper;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;

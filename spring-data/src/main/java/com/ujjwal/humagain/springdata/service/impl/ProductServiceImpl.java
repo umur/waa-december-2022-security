@@ -9,12 +9,14 @@ import com.ujjwal.humagain.springdata.repository.ReviewRepository;
 import com.ujjwal.humagain.springdata.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_USER') || hasRole('ROLE_ADMIN')")
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ReviewRepository reviewRepository;

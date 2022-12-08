@@ -8,7 +8,7 @@ INSERT INTO address (street, zip, city) VALUES
 INSERT INTO role (id, role)
 VALUES (1, 'ADMIN');
 INSERT INTO role (id, role)
-VALUES (2, 'GOLD');
+VALUES (2, 'USER');
 
 INSERT INTO users (email, password, first_name, last_name, id_address) VALUES
                                                                            ('ujjwal@gmail.com', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'Ujjwal', 'Humagain', 1),

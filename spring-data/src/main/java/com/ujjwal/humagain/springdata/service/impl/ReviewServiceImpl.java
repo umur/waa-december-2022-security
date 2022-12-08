@@ -6,12 +6,14 @@ import com.ujjwal.humagain.springdata.repository.ReviewRepository;
 import com.ujjwal.humagain.springdata.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final ModelMapper modelMapper;

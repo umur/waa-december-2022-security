@@ -6,12 +6,14 @@ import com.ujjwal.humagain.springdata.repository.AddressRepository;
 import com.ujjwal.humagain.springdata.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
