@@ -16,9 +16,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -36,6 +38,8 @@ public class UserServiceImpl implements UserService {
         List<Role> roles = new ArrayList<>();
         roles.add(roleRepository.findById(2).get());
         user.setRoles(roles);
+        String hashed = new BCryptPasswordEncoder().encode(userDto.getPassword());
+        user.setPassword(hashed);
         userRepository.save(user);
     }
     @Override
