@@ -16,8 +16,8 @@ INSERT INTO Product(name,price,rating,category_id) VALUES ('Samsung Tablet',1000
 INSERT INTO Product(name,price,rating,category_id) VALUES ('Apple Tablet',1200,6,3);
 
 --Data for User
-INSERT INTO Users(email,password,firstName,lastName) VALUES ('user1@miu.edu','1234','User','One');
-INSERT INTO Users(email,password,firstName,lastName) VALUES ('user2@miu.edu','1234','User','Two');
+INSERT INTO Users(email,password,firstName,lastName) VALUES ('admin@miu.edu','$2y$10$Dl6mLMvy7WedoEzN7E4gCOk3yMwg8Q2BdC8uCFaBpznrp7sishLeq','User','One');
+INSERT INTO Users(email,password,firstName,lastName) VALUES ('user@miu.edu','$2y$10$Dl6mLMvy7WedoEzN7E4gCOk3yMwg8Q2BdC8uCFaBpznrp7sishLeq','User','Two');
 
 --Data for Address
 INSERT INTO Address(street,zip,city,user_id) VALUES ('1000N 4TH','52557','FairField',1);
@@ -33,7 +33,7 @@ INSERT INTO Review(comment,user_id,product_id) VALUES ('It runs smoothly and has
 INSERT INTO role (id, role)
 VALUES (1, 'ADMIN');
 INSERT INTO role (id, role)
-VALUES (2, 'GOLD');
+VALUES (2, 'USER');
 
 
 --Data for user roles

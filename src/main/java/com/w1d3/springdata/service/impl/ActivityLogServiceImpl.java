@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+
 public class ActivityLogServiceImpl implements ActivityLogService {
     private  final ActivityLogRepo activityLogRepo;
     private  final ModelMapper mapper;

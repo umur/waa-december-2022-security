@@ -7,11 +7,13 @@ import com.w1d3.springdata.repository.AddressRepo;
 import com.w1d3.springdata.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AddressServiceImpl implements AddressService {
     private  final AddressRepo addressRepo;
     private final ModelMapper modelMapper;

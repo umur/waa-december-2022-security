@@ -28,4 +28,8 @@ public class Product {
     @ManyToOne
     //@JsonManagedReference
      private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

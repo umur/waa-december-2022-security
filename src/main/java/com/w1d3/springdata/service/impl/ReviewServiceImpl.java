@@ -7,6 +7,7 @@ import com.w1d3.springdata.repository.ReviewRepo;
 import com.w1d3.springdata.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepo reviewRepo;
     private final ModelMapper modelMapper;

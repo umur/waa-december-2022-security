@@ -7,6 +7,7 @@ import com.w1d3.springdata.repository.ProductRepo;
 import com.w1d3.springdata.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final ModelMapper modelMapper;
@@ -27,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @ExecutionTime
+
     public List<ProductDto> findAll() {
         var productList = (List<Product>) productRepo.findAll();
         return productList.stream().map(p -> modelMapper.map(p, ProductDto.class)).toList();

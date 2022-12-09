@@ -5,12 +5,14 @@ import com.w1d3.springdata.entity.Category;
 import com.w1d3.springdata.repository.CategoryRepo;
 import com.w1d3.springdata.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepo categoryRepo;
 
