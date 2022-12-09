@@ -20,4 +20,6 @@ public class User {
     private String firstname;
     private String lastname;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<Role> roles;
 }
