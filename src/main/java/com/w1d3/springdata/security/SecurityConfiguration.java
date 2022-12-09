@@ -37,6 +37,8 @@ public class SecurityConfiguration {
                 .build();
     }
 
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -46,6 +48,7 @@ public class SecurityConfiguration {
                 .authorizeRequests()
                 .antMatchers("/uaa").permitAll()
                 .antMatchers("/products").permitAll()
+                .antMatchers("/","src/main/resources/static/**","css/**","js/**").permitAll()
 //
 //                .antMatchers(HttpMethod.POST,"/api/v1/users").hasAuthority("ADMIN")
                 //               .antMatchers(HttpMethod.GET,"/products").hasAuthority("GOLD")

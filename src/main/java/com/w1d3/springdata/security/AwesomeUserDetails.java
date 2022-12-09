@@ -14,12 +14,13 @@ import java.util.stream.Collectors;
 public class AwesomeUserDetails implements UserDetails {
     private String email;
     private String password;
+    private int userId;
     private List<Role> roles;
 
 
 
     public AwesomeUserDetails(User user) {
-
+        this.userId=user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.roles = user.getRoles();
@@ -41,6 +42,10 @@ public class AwesomeUserDetails implements UserDetails {
     public String getUsername() {
         return email
                 ;
+    }
+    public int getUserId() {
+        return userId;
+
     }
 
     @Override

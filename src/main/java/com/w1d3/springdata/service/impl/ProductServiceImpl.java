@@ -3,11 +3,14 @@ package com.w1d3.springdata.service.impl;
 import com.w1d3.springdata.aspect.annotation.ExecutionTime;
 import com.w1d3.springdata.dto.ProductDto;
 import com.w1d3.springdata.entity.Product;
+import com.w1d3.springdata.entity.User;
 import com.w1d3.springdata.repository.ProductRepo;
+import com.w1d3.springdata.security.AwesomeUserDetails;
 import com.w1d3.springdata.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +26,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @ExecutionTime
     public void save(Product product) {
-
+        var userId=((AwesomeUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserId();
+        var loggedInUser = new User();
+        loggedInUser.setId(userId);
+        product.setUser(loggedInUser);
         productRepo.save(product);
     }
 
