@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 public class UaaServiceImpl implements UaaService {
 
     private final AuthenticationManager authenticationManager;
-    private final UserDetailsService userDetailsService;
     private final JwtHelper jwtHelper;
 
     @Override
