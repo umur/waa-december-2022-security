@@ -2,6 +2,7 @@ package miu.edu.springdata.controller;
 
 import lombok.RequiredArgsConstructor;
 import miu.edu.springdata.annotation.OffWord;
+import miu.edu.springdata.entity.User;
 import miu.edu.springdata.model.LoginRequest;
 import miu.edu.springdata.service.UaaService;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,14 @@ public class UaaController {
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
         var loginResponse = uaaService.login(loginRequest);
         return ResponseEntity.ok().body(loginResponse);
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> register(@RequestBody User user){
+        uaaService.register(user);
+        return ResponseEntity.ok().body("User Registered");
+
+
     }
 
 }

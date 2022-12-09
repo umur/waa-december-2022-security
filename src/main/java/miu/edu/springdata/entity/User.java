@@ -2,6 +2,8 @@ package miu.edu.springdata.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -18,12 +20,14 @@ public class User {
     private String firstname;
     private String lastname;
 
+    @JsonIgnore
     @JoinColumn(name="user_id")
     @JsonBackReference
     @OneToMany
     private List<Review> reviews;
 
 
+    @JsonIgnore
     @JsonBackReference
     @OneToOne(mappedBy = "user")
     private Product products;
