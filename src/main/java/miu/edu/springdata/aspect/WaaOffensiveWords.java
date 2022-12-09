@@ -1,6 +1,10 @@
 package miu.edu.springdata.aspect;
 
+import lombok.RequiredArgsConstructor;
+import miu.edu.springdata.service.OffensiveUserService;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -12,14 +16,21 @@ import javax.servlet.http.HttpServletRequest;
 
 @Aspect
 @Component
+@RequiredArgsConstructor
 public class WaaOffensiveWords {
 
-    @Pointcut("within(miu.edu.springdata.service..*)")
-    public void allService(){}
+    private final OffensiveUserService offensiveUserService;
 
-    @Before("allService()")
-    public void OffensiveWordCatcher(JoinPoint joinpoint){
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        System.out.println(joinpoint.getSignature().getName());
+    @Pointcut("@annotation(miu.edu.springdata.annotation.OffWord)")
+    public void OffWord(){}
+
+    @Around("OffWord()")
+    public Object OffensiveWordCatcher(ProceedingJoinPoint joinpoint) throws Throwable {
+        if(offensiveUserService.checkIfBanned())
+            return "You have been banned for about 15 minutes";
+        Object[] signatureArgs = joinpoint.getArgs();
+        offensiveUserService.scanOffensiveWord(signatureArgs);
+        var result = joinpoint.proceed(signatureArgs);
+        return result;
     }
 }

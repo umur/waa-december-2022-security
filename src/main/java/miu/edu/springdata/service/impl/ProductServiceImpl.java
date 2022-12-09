@@ -2,6 +2,7 @@ package miu.edu.springdata.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import miu.edu.springdata.annotation.ExecutionTime;
+import miu.edu.springdata.annotation.OffWord;
 import miu.edu.springdata.dto.ProductDto;
 import miu.edu.springdata.entity.Product;
 import miu.edu.springdata.entity.User;
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @ExecutionTime
+    @OffWord
     public void save(Product product) {
 //        System.out.printf("hello");
         var userId = ((MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserId();

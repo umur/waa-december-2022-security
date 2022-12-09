@@ -1,6 +1,7 @@
 package miu.edu.springdata.controller;
 
 import lombok.RequiredArgsConstructor;
+import miu.edu.springdata.annotation.OffWord;
 import miu.edu.springdata.model.LoginRequest;
 import miu.edu.springdata.service.UaaService;
 import org.springframework.http.ResponseEntity;
