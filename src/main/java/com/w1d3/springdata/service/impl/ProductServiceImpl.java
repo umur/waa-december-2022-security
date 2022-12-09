@@ -1,6 +1,7 @@
 package com.w1d3.springdata.service.impl;
 
 import com.w1d3.springdata.aspect.annotation.ExecutionTime;
+import com.w1d3.springdata.aspect.annotation.OffensiveWord;
 import com.w1d3.springdata.dto.ProductDto;
 import com.w1d3.springdata.entity.Product;
 import com.w1d3.springdata.entity.User;
@@ -25,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @ExecutionTime
+    @OffensiveWord
     public void save(Product product) {
         var userId=((AwesomeUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserId();
         var loggedInUser = new User();

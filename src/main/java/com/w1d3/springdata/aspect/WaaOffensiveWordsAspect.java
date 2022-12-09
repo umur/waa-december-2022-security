@@ -1,5 +1,6 @@
 package com.w1d3.springdata.aspect;
 
+import com.w1d3.springdata.service.OffensiveWordService;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -7,31 +8,27 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 
-//@Aspect
-//@Component
-//@RequiredArgsConstructor
+
+@Aspect
+@Component
+@RequiredArgsConstructor
 public class WaaOffensiveWordsAspect {
-    HashMap<String,String> offensiveWords=new HashMap<>();
-    public WaaOffensiveWordsAspect(){
-        offensiveWords.put("Spring","******");
-        offensiveWords.put("Apple","******");
-        offensiveWords.put("Dell","******");
-        offensiveWords.put("Mac","******");
-    }
 
 
 
-
-
-    @Pointcut("within(com.w1d3.springdata.service..*)")
+    private final OffensiveWordService offensiveWordService;
+    @Pointcut("@annotation(com.w1d3.springdata.aspect.annotation.OffensiveWord)")
     public void OffensiveWordsAspect(){
     }
 
     @Around("OffensiveWordsAspect()")
-    public Object filterOutOffensiveWord(ProceedingJoinPoint joinPoint){
-//        joinPoint.getArgs().
-        return true;
+    public Object filterOutOffensiveWord(ProceedingJoinPoint joinPoint)throws Throwable {
+            if(offensiveWordService.checkIfBanned())
+                return "You have been banned for about 15 minutes";
+            Object[] signatureArgs = joinPoint.getArgs();
+            offensiveWordService.scanOffensiveWord(signatureArgs);
+            var result = joinPoint.proceed(signatureArgs);
+            return result;
     }
 }

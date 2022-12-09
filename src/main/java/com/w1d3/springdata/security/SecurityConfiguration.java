@@ -46,9 +46,8 @@ public class SecurityConfiguration {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/uaa").permitAll()
-                .antMatchers("/products").permitAll()
-                .antMatchers("/","src/main/resources/static/**","css/**","js/**").permitAll()
+                .antMatchers("/uaa","/uaa/signup").permitAll()
+              //  .antMatchers("/products").permitAll()
 //
 //                .antMatchers(HttpMethod.POST,"/api/v1/users").hasAuthority("ADMIN")
                 //               .antMatchers(HttpMethod.GET,"/products").hasAuthority("GOLD")
