@@ -7,6 +7,7 @@ import edu.miu.springsecurity.repository.CategoryRepo;
 import edu.miu.springsecurity.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepo categoryRepo;
     private final ModelMapper modelMapper;

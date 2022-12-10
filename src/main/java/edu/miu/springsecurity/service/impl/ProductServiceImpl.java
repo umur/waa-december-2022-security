@@ -5,11 +5,15 @@ import edu.miu.springsecurity.dto.ProductDto;
 import edu.miu.springsecurity.dto.ReviewDto;
 import edu.miu.springsecurity.entity.Category;
 import edu.miu.springsecurity.entity.Product;
+import edu.miu.springsecurity.entity.User;
 import edu.miu.springsecurity.repository.CategoryRepo;
 import edu.miu.springsecurity.repository.ProductRepo;
+import edu.miu.springsecurity.security.AwesomeUserDetails;
 import edu.miu.springsecurity.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +22,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+//@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final CategoryRepo categoryRepo;
@@ -34,7 +39,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void save(ProductDto product) {
-        productRepo.save(modelMapper.map(product, Product.class));
+        var entity = modelMapper.map(product, Product.class);
+
+        //set user_id from current user context
+        var authenticationContext = SecurityContextHolder.getContext().getAuthentication();
+        var userDetails = (AwesomeUserDetails)authenticationContext.getPrincipal();
+        var user = modelMapper.map(userDetails, User.class);
+        entity.setUser(user);
+
+        productRepo.save(entity);
     }
 
     @Override

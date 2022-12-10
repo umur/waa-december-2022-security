@@ -1,8 +1,10 @@
 package edu.miu.springsecurity.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -24,4 +26,12 @@ public class User {
     //User can create many Reviews
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    private List<Role> roles;
+
+    @JsonIgnore
+    @OneToMany
+    private List<RequestPerUser> requests;
 }

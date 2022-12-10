@@ -30,13 +30,10 @@ public class LogAspect {
     @Around("myAnnotation()")
     public Object logExecutionTime(ProceedingJoinPoint jp) throws Throwable {
         //create stopwatch object
-        //StopWatch sw = new StopWatch();
-        //sw.start(jp.getSignature().getName());
         long startTime = System.currentTimeMillis();
         var result = jp.proceed();
-        //sw.stop();
         long endTime = System.currentTimeMillis();
-        long totalTime = endTime - startTime; //sw.getLastTaskTimeMillis();
+        long totalTime = endTime - startTime;
 
         //create ActivityLog object
         ActivityLog activityLog = new ActivityLog();

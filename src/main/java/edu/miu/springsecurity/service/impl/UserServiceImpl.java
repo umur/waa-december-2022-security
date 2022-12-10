@@ -6,13 +6,16 @@ import edu.miu.springsecurity.repository.UserRepo;
 import edu.miu.springsecurity.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final ModelMapper modelMapper;
@@ -31,6 +34,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(UserDto user) {
+        //encode password to store in db
+        String encoded = Base64.getEncoder().encodeToString(user.getPassword().getBytes());
+        user.setPassword(encoded);
         userRepo.save(modelMapper.map(user, User.class));
     }
 

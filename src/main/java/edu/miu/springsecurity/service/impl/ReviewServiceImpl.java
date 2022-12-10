@@ -6,6 +6,7 @@ import edu.miu.springsecurity.repository.ReviewRepo;
 import edu.miu.springsecurity.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepo reviewRepo;
     private final ModelMapper modelMapper;

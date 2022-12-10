@@ -18,4 +18,6 @@ public class UserDto {
 
     @JsonIgnoreProperties("user")
     private List<ReviewDto> reviews;
+
+    private List<RoleDto> roles;
 }

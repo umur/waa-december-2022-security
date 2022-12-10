@@ -23,4 +23,8 @@ public class Product {
     //A Product can have many Reviews
     @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
     private List<Review> reviews;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

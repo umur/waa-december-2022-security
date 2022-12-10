@@ -1,4 +1,4 @@
-package edu.miu.springsecurity;
+package edu.miu.springsecurity.exception;
 
 public class AopIsAweSomeHeaderException extends Exception {
     public AopIsAweSomeHeaderException(String message) {
