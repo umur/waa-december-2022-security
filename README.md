@@ -15,18 +15,19 @@ You can continue to your last lab assignment to add security with `JWT` to your 
     * You can access the current request holder via `SecurityContextHolder`.
 * Generated token should be valid for 15 minutes.
 * Use `AOP` to filter out any offensive words.
-    * You can use any kind of offensive words dictionary or you can even create one for testing.
-    * Assuming `spring` is an offensive word and if the input is : `springing`, it should be filtered out as `******ing`
-      .
-        * Create `WaaOffensiveWords` aspect.
-    * If the same user sends more than 5 different requests that contain offensive words in last 30 minutes, do not
-      accept the requests of this user for next 15 minutes and return the error
-      message `Max Bad Words Requests Limit has been Reached. You need wait for X minutes.` Change `X` with remaining
-      time of the ban.
-        * This implementation should be `stateless`. You cannot hold any data in the server's memory. You can design
-          table/tables to implement this feature.
-        * To practice further (optional), you can use `redis` instead of using `PostgreSQL`.
-        * Create `WaaRequestFilter` aspect.
+* You can use any kind of offensive words dictionary or you can even create one for testing.
+* Assuming `spring` is an offensive word and if the input is : `springing`, it should be filtered out as `******ing`
+  .
+    * Create `WaaOffensiveWords` aspect.
+* If the same user sends more than 5 different requests that contain offensive words in last 30 minutes, do not
+  accept the requests of this user for next 15 minutes and return the error
+  message `Max Bad Words Requests Limit has been Reached. You need wait for X minutes.` Change `X` with remaining
+  time of the ban.
+    * This implementation should be `stateless`. You cannot hold any data in the server's memory. You can design
+      table/tables to implement this feature.
+    * To practice further (optional), you can use `redis` instead of using `PostgreSQL`.
+    * Create `WaaRequestFilter` aspect.
+
 * Continue to your UI project and implement `signin` and `signup` functionality.
 * Make necessary changes in your UI project to communicate with backend server.
     * Send the token in each request except for `signin` and `signup` functions.
