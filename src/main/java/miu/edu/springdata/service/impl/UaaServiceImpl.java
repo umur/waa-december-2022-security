@@ -39,8 +39,10 @@ public class UaaServiceImpl implements UaaService {
             );
         }catch (BadCredentialsException e){
             log.info("Bad Credentials");
+            throw e;
         }catch (Exception ex){
             log.info(ex.getMessage());
+            throw ex;
         }
         final String accessToken = jwtHelper.generateToken(loginRequest.getEmail());
         var loginResponse = new LoginResponse(accessToken);

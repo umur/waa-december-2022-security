@@ -1,6 +1,7 @@
 package miu.edu.springdata.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,13 +16,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String email;
     private String password;
     private String firstname;
     private String lastname;
 
     @JsonIgnore
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     @JsonBackReference
     @OneToMany
     private List<Review> reviews;

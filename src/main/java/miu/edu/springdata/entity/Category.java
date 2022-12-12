@@ -15,6 +15,7 @@ public class Category {
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String name;
 
 //    @JoinColumn(name = "category_id")

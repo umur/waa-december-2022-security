@@ -6,14 +6,12 @@ import miu.edu.springdata.entity.User;
 import miu.edu.springdata.model.LoginRequest;
 import miu.edu.springdata.service.UaaService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/uaa")
 @RequiredArgsConstructor
+@CrossOrigin
 public class UaaController {
     private final UaaService uaaService;
 
