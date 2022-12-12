@@ -13,7 +13,7 @@ public class UaaController {
 
     private final UaaService uaaService;
 
-    public UaaController(UaaService uaaService) {
+    public UaaController(UaaService uaaService){
         this.uaaService = uaaService;
     }
 

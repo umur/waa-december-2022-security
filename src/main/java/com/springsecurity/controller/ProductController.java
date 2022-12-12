@@ -5,6 +5,7 @@ import com.springsecurity.entity.Review;
 import com.springsecurity.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +21,13 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping
     public void save(@RequestBody Product p) {
         productService.save(p);
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping
     public List<Product> getAll() {
         return productService.getAll();

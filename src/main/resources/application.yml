@@ -2,7 +2,7 @@ spring:
   application:
     name: spring-security-demo-1
   datasource:
-    password: 1
+    password: 562200
     url: jdbc:postgresql://localhost:5432/spring-security-demo-1
     username: postgres
   jpa:
@@ -21,4 +21,4 @@ spring:
   main:
     allow-bean-definition-overriding: true
 server:
-  port: 9090
+  port:8080
