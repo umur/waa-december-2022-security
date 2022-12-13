@@ -45,7 +45,7 @@ public class WaaRequestFilter {
             long difference = firstOccurrence.until(now, ChronoUnit.MINUTES);
             long ban = lastOccurrence.until(now, ChronoUnit.MINUTES);
             try{
-                if(difference < 30 && ban < 1) {
+                if(difference < 30 && ban < 15) {
                     throw new Exception("offensive words encountered in 5 current requests.");
                 } else {
                     offensiveWordsRepo.deleteAllByUser_Id(user.getId());
