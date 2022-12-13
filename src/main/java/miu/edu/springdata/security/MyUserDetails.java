@@ -16,6 +16,8 @@ public class MyUserDetails implements UserDetails {
 
     private int userId;
     private String email;
+    private String firstname;
+    private String lastname;
     @JsonIgnore
     private String  password;
     private List<Role> roles;
@@ -25,6 +27,8 @@ public class MyUserDetails implements UserDetails {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.roles = user.getRoles();
+        this.firstname = user.getFirstname();
+        this.lastname = user.getLastname();
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -36,6 +40,12 @@ public class MyUserDetails implements UserDetails {
 
     public int getUserId() {
         return userId;
+    }
+    public String getFirstname() {
+        return firstname;
+    }
+    public String getLastname() {
+        return lastname;
     }
 
     @Override

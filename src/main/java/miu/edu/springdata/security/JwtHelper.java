@@ -6,6 +6,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Map;
 
 @Component
 public class JwtHelper {
@@ -20,9 +21,10 @@ public class JwtHelper {
         expiration = Long.parseLong(this.env.getProperty("jwt.expiration"));
     }
 
-    public String generateToken(String email){
+    public String generateToken(String email, Map<String, Object> claims){
         return Jwts.builder()
                 .setSubject(email)
+                .setClaims(claims)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+expiration))
                 .signWith(SignatureAlgorithm.HS512, secret)
