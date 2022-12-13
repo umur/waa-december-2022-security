@@ -9,33 +9,35 @@ import java.util.Map;
 @Component
 public class JwtHelper {
     private final String secret = "top-secret";
-    private final long expiration = 5*60*60*60;
+    private final long expirataion = 5 * 60 * 60 * 60;
+    // private final long expirataion = 5;
 
-    public String generateToken(String email){
+    public String generateToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis()+expiration))
-                .signWith(SignatureAlgorithm.ES512,secret)
+                .setExpiration(new Date(System.currentTimeMillis() + expirataion))
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
 
-    public String generateRefreshToken(String email){
+    public String generateRefreshToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis()+expiration*60))
-                .signWith(SignatureAlgorithm.ES512,secret)
+                .setExpiration(new Date(System.currentTimeMillis() + expirataion * 60))
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
 
-    public String getSubject(String token){
+    public String getSubject(String token) {
         return Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
     }
+
     public boolean validateToken(String token) {
         try {
             Jwts.parser()
@@ -55,12 +57,14 @@ public class JwtHelper {
         }
         return false;
     }
+
     public String doGenerateRefreshToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .setExpiration(new Date(System.currentTimeMillis() + expirataion))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
+
 
     public String getUsernameFromToken(String token) {
         String result = null;
@@ -79,3 +83,4 @@ public class JwtHelper {
         return result;
     }
 }
+

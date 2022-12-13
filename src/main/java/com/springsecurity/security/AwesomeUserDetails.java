@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class AuthUserDetails implements UserDetails {
+public class AwesomeUserDetails implements UserDetails {
 
     private String email;
     @JsonIgnore
@@ -20,7 +20,7 @@ public class AuthUserDetails implements UserDetails {
     private List<Role> roles;
 
 
-    public AuthUserDetails(User user){
+    public AwesomeUserDetails(User user){
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.roles = user.getRoles();

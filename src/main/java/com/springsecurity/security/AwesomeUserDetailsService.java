@@ -6,22 +6,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("userDetailsService")
 @Transactional
-public class AuthUserDetailService implements UserDetailsService {
+public class AwesomeUserDetailsService implements UserDetailsService {
 
-    public final UserRepo repo;
+    private final UserRepo userRepo;
 
-    public AuthUserDetailService(UserRepo repo) {
-        this.repo = repo;
+    public AwesomeUserDetailsService(UserRepo userRepo) {
+        this.userRepo = userRepo;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = repo.findByEmail(username);
-        return new AuthUserDetails(user);
+        User user = userRepo.findByEmail(username);
+
+        var userDetails = new AwesomeUserDetails(user);
+        return userDetails;
     }
+
 }
+
