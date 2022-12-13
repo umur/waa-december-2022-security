@@ -18,23 +18,25 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
+    @Column(nullable = false)
     private double price;
+    @Column(nullable = false)
     private double rating;
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")
-    @JsonManagedReference
+    @JsonManagedReference("product")
     private List<Review> reviews;
 //    @JsonIgnore
     @ManyToOne
-    @JsonBackReference
+//    @JsonManagedReference("product")
     private Category category;
 
 
     @JsonIgnore
-    @JsonManagedReference
+    @JsonManagedReference("product")
     @OneToOne
     @JoinColumn(name = "id_user")
     private User user;

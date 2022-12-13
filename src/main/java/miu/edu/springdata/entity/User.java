@@ -16,21 +16,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String firstname;
+    @Column(nullable = false)
     private String lastname;
 
     @JsonIgnore
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+//    @JsonBackReference
     @OneToMany
     private List<Review> reviews;
 
 
     @JsonIgnore
-    @JsonBackReference
+    @JsonBackReference("product")
     @OneToOne(mappedBy = "user")
     private Product products;
 

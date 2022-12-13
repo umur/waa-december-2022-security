@@ -11,13 +11,13 @@ import java.util.Date;
 public class JwtHelper {
     @Autowired
     private Environment env;
-    private final String secret;//= env.getProperty("jwt.secret");// "suntalikomanmabasnekohola";// "c3VudGFsaWtvbWFubWFiYXNuZWtvaG9sYQ==";//
-    private final long expiration;// = Long.parseLong(env.getProperty("jwt.expiration")); //5*60*60*60;
+    private final String secret;
+    private final long expiration;
 
     public JwtHelper(Environment env){
         this.env = env;
-        secret = this.env.getProperty("jwt.secret");// "suntalikomanmabasnekohola";// "c3VudGFsaWtvbWFubWFiYXNuZWtvaG9sYQ==";//
-        expiration = Long.parseLong(this.env.getProperty("jwt.expiration")); //5*60*60*60;
+        secret = this.env.getProperty("jwt.secret");
+        expiration = Long.parseLong(this.env.getProperty("jwt.expiration"));
     }
 
     public String generateToken(String email){

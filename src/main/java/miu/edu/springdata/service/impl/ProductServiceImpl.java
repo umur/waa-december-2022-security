@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import miu.edu.springdata.annotation.ExecutionTime;
 import miu.edu.springdata.annotation.OffWord;
 import miu.edu.springdata.dto.ProductDto;
+import miu.edu.springdata.dto.ProductSimpleDto;
 import miu.edu.springdata.entity.Product;
 import miu.edu.springdata.entity.User;
 import miu.edu.springdata.repository.ProductRepo;
@@ -38,8 +39,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @ExecutionTime
-    public List<ProductDto> findAll() {
-        return getDtoList((List<Product>) productRepo.findAll());
+    public List<ProductSimpleDto> findAll() {
+        return getSimpleDtoList((List<Product>) productRepo.findAll());
     }
 
     @Override
@@ -74,7 +75,14 @@ public class ProductServiceImpl implements ProductService {
         }).toList();
     }
     private ProductDto getDto(Product product){
+        var test = Product.class;
         return mapper.map(product, ProductDto.class);
+    }
+
+    private List<ProductSimpleDto> getSimpleDtoList(List<Product> products){
+        return products.stream().map(p->{
+            return mapper.map(p, ProductSimpleDto.class);
+        }).toList();
     }
 }
 

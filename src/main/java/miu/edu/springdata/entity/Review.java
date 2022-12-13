@@ -11,9 +11,10 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
     private String comment;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("product")
     private Product product;
 }

@@ -2,6 +2,7 @@ package miu.edu.springdata.controller;
 
 import lombok.RequiredArgsConstructor;
 import miu.edu.springdata.dto.ProductDto;
+import miu.edu.springdata.dto.ProductSimpleDto;
 import miu.edu.springdata.entity.Product;
 import miu.edu.springdata.service.ProductService;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDto> findAll() {
+    public List<ProductSimpleDto> findAll() {
         return productService.findAll();
     }
 

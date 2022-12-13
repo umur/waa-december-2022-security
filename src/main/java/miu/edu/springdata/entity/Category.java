@@ -15,11 +15,11 @@ public class Category {
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
 
 //    @JoinColumn(name = "category_id")
-    @JsonManagedReference
+    @JsonBackReference("product")
     @OneToMany(mappedBy = "category")
     private List<Product> products;
 }

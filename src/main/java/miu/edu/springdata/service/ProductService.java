@@ -1,13 +1,14 @@
 package miu.edu.springdata.service;
 
 import miu.edu.springdata.dto.ProductDto;
+import miu.edu.springdata.dto.ProductSimpleDto;
 import miu.edu.springdata.entity.Product;
 
 import java.util.List;
 
 public interface ProductService {
     void save(Product product);
-    List<ProductDto> findAll();
+    List<ProductSimpleDto> findAll();
     ProductDto findById(int id);
     void deleteById(int id);
     List<ProductDto> findByPriceGreaterThan(double minPrice);
