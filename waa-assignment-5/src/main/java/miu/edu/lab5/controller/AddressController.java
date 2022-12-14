@@ -4,7 +4,7 @@ import miu.edu.lab5.entity.Address;
 import miu.edu.lab5.service.impl.AddressServiceImpl;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+@CrossOrigin
 @RequestMapping("/addresses")
 @RestController
 public class AddressController {

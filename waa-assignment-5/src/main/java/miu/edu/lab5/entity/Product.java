@@ -1,6 +1,7 @@
 package miu.edu.lab5.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,12 +13,13 @@ public class Product {
     @Id
     private int id;
     private String name;
-    private double salary;
     private int rating;
 
+    @JsonIgnore
     @ManyToOne
     private Category category;
 
+    @JsonIgnore
     @ManyToOne
     private Review reviews;
 

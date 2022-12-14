@@ -21,7 +21,7 @@ public class HeaderAspect {
     @Pointcut("within(miu.edu.lab5.service..*)")
     public void checkHeaderPr(){}
 
-    @Before("checkHeaderPr()")
+    //@Before("checkHeaderPr()")
     public void checkHeader() throws AopIsAwesomeHeaderException {
         System.out.println("i am in heaser aspect " +Objects.isNull(httpServletRequest.getHeader("AOP-IS-AWESOME")));
         if(httpServletRequest.getMethod().toString().equalsIgnoreCase("POST")

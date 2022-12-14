@@ -3,7 +3,6 @@ package miu.edu.lab5.entity;
 
 import lombok.Data;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import java.util.List;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String email;
     private String password;
@@ -22,10 +22,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
-    @OneToOne
-    private Address address;
+//    @OneToOne
+//    private Address address;
 
-    public List<Role> getRoles() {
-        return  null;
-    }
+    @ManyToMany(mappedBy = "users")
+    private List <Role> roles;
+//    public List<Role> getRoles() {
+//        return  null;}
+
 }

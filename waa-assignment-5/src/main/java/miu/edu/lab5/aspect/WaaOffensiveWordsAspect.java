@@ -36,7 +36,7 @@ public class WaaOffensiveWordsAspect {
     private final RequestPerUserService requestPerUserService;
     private final UserRepo userRepo;
 
-    @Around("execution(* miu.edu.lab5.*.*(..))")
+    @Around("execution(* miu.edu.lab5.controller.*.*(..))")
     public Object FilterOffensive(ProceedingJoinPoint pjp) throws Throwable {
         var modifiedArgs = pjp.getArgs();
         int index = 0;
@@ -53,7 +53,8 @@ public class WaaOffensiveWordsAspect {
                     if(field.getType() == String.class) {
                         field.setAccessible(true);
                         var value = field.get(arg);
-                        field.set(arg, replaceOffensive(value.toString()));
+                        if(value != null)
+                            field.set(arg, replaceOffensive(value.toString()));
                     }
                 }
                 modifiedArgs[index] = arg;

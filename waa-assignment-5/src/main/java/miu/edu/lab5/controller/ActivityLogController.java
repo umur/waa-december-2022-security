@@ -7,7 +7,7 @@ import miu.edu.lab5.service.impl.ActivityLogServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin
 @RestController
 @RequestMapping("logs")
 public class ActivityLogController {

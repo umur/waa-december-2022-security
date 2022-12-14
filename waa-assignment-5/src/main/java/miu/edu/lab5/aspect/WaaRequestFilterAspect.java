@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @Order(1)
 public class WaaRequestFilterAspect {
     private final RequestPerUserService requestPerUserService;
-    @Pointcut("execution(* miu.edu.lab5.*.*(..))")
+    @Pointcut("execution(* miu.edu.lab5.controller.*.*(..))")
     public void filterJP() {
 
     }

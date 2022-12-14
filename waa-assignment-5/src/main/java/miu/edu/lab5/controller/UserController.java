@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
+
 public class UserController {
 
     private final UserServiceImpl userService;

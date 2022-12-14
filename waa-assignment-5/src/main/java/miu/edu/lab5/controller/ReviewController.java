@@ -6,7 +6,7 @@ import miu.edu.lab5.service.impl.ReviewServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RequestMapping("/reviews")
 @RestController
 public class ReviewController {

@@ -2,16 +2,13 @@ package miu.edu.lab5.security;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import miu.edu.lab5.entity.Role;
 import miu.edu.lab5.entity.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.management.relation.Role;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 
 public class SecUserDetails implements UserDetails {
 

@@ -1,6 +1,7 @@
 package miu.edu.lab5.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,9 +17,11 @@ public class Review {
     private int id;
     private String comment;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "reviews")
     private List<Product> product;
 
+     @JsonIgnore
     @ManyToOne
     private User user;
 
