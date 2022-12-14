@@ -13,5 +13,5 @@ public class AddressBasicDto {
     private String street;
     private int zip;
     private String city;
-    private User user;
+   // private User user;
 }

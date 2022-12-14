@@ -1,7 +1,7 @@
 package com.example.lab3springdata.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -25,4 +25,8 @@ public class User implements Serializable {
     @OneToOne
     @JsonIgnoreProperties("user")
     private Address address;
+
+    @ManyToMany(mappedBy="users")
+
+    private List<Role> roles;
 }

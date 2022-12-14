@@ -1,10 +1,10 @@
 package com.example.lab3springdata.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import jakarta.persistence.OneToOne;
+import javax.persistence.OneToOne;
 import lombok.Data;
 
 import java.io.Serializable;

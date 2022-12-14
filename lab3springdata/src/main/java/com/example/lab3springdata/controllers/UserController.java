@@ -6,9 +6,10 @@ import com.example.lab3springdata.services.impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-@RequestMapping("/useres")
+@CrossOrigin
+@RequestMapping("/users")
 @RestController
+
 public class UserController {
     private final UserServiceImpl userService;
 

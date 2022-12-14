@@ -7,7 +7,7 @@ import com.example.lab3springdata.services.impl.AddressServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RequestMapping("/addresses")
 @RestController
 public class AddressController {
