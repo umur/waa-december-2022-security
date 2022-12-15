@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "8654b2a0-132a-4a73-be1e-c8277798128b",
+		"name": "WAA - CodeBase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24635219"
+	},
+	"item": [
+		{
+			"name": "Authenticate User with Admin Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"console.log(\"jsonData\",jsonData);",
+							"pm.globals.set(\"accessToken\",jsonData.accessToken);",
+							"pm.globals.set(\"refreshToken\",jsonData.refreshToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"john@miu.edu\",\n    \"password\" : \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/authenticate",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate User with User Role",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"console.log(\"jsonData\",jsonData);",
+							"pm.globals.set(\"accessToken\",jsonData.accessToken);",
+							"pm.globals.set(\"refreshToken\",jsonData.refreshToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jack@miu.edu\",\n    \"password\" : \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/authenticate",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"console.log(\"jsonData\",jsonData);",
+							"pm.globals.set(\"access_token\",jsonData.access_token);",
+							"pm.globals.set(\"refresh_token\",jsonData.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYWNrQG1pdS5lZHUiLCJpYXQiOjE2NzA5ODYwOTEsImV4cCI6MTczNTc4NjA5MX0.iYN7NUU9fBvTreizfJXS5WtTra51iaFEhltllRD-D_y1uBPSPDBx_FDIoB_0hSAfJukorYa2xK4mi0BVqcu0Jw\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/authenticate/refreshToken",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"authenticate",
+						"refreshToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Products",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseURL}}/products",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Categories",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseURL}}/categories",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseURL}}/admin/users",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
