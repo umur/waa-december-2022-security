@@ -1,0 +1,16 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "sqltools.connections": [
+        {},
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 55000,
+            "driver": "PostgreSQL",
+            "name": "localhost:55000",
+            "database": "spring-security-demo-1",
+            "username": "postgres",
+            "password": "postgrespw"
+        }
+    ]
+}
