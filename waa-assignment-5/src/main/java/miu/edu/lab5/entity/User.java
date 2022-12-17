@@ -19,7 +19,8 @@ public class User {
     private String firstname;
     private String lastname;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+
     private List<Review> reviews;
 
 //    @OneToOne
